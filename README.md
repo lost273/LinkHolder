@@ -19,3 +19,4 @@ Make `IdentityDbContext` and `DbSet` for store of the links
         }
     }
 to the file `appsettings.json`
+    "Data"
