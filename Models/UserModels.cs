@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace LinkHolder.Models{
-    public class AppUser : IdentityUser{
-
+namespace LinkHolder.Models {
+    public class AppUser : IdentityUser {
     }
 }

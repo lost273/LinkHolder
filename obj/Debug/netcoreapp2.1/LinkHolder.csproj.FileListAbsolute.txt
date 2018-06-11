@@ -1,0 +1,14 @@
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\bin\Debug\netcoreapp2.1\LinkHolder.deps.json
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\bin\Debug\netcoreapp2.1\LinkHolder.runtimeconfig.json
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\bin\Debug\netcoreapp2.1\LinkHolder.runtimeconfig.dev.json
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\bin\Debug\netcoreapp2.1\LinkHolder.dll
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\bin\Debug\netcoreapp2.1\LinkHolder.pdb
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.csprojAssemblyReference.cache
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.csproj.CoreCompileInputs.cache
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.RazorAssemblyInfo.cache
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.RazorAssemblyInfo.cs
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.AssemblyInfoInputs.cache
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.AssemblyInfo.cs
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.RazorTargetAssemblyInfo.cache
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.dll
+D:\Microsoft VS Code\myprojects\MyGitRepo\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.pdb
