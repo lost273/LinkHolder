@@ -37,3 +37,5 @@ Create `AddDbContext` in the file `Startup.cs`
 ## Creating the Authentication
 
 Create the file `AuthProperties.cs` in the folder `Models`
+Create the file `AccountController.cs` in the folder `Controller`
+Write `Token` controller for JWT Authentication
