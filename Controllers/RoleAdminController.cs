@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LinkHolder.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LinkHolder.Controllers {
+    [Authorize(Roles = "Administrator")]
+    [Route("api/[controller]")]
     public class RoleAdminController : Controller {
         private RoleManager<IdentityRole> roleManager;
         private UserManager<AppUser> userManager;
