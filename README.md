@@ -46,3 +46,10 @@ Add JWT-functional in in the file `Startup.cs` (Authentication, Authorization)
 
 Add method `Register` in the `AccountController.cs`
 Add class `CreateUserModel` in the `UserModels.cs`
+
+## Administration
+
+Create the file `AdminController.cs` in the folder `Controller`
+Create the file `RoleAdminController.cs` in the folder `Controller`
+Add `EditUserModel` in the `UserModels.cs`
+Add `RoleModificationModel` in the `UserModels.cs`

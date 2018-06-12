@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LinkHolder.Controllers {
-    [Authorize(Roles = "User")]
+    [Authorize(Roles = "User,Administrator")]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase {

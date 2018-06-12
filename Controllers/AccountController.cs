@@ -12,7 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
 namespace LinkHolder.Controllers {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
+    [Route("api/[controller]")]
     public class AccountController : Controller {
         private UserManager<AppUser> userManager;
         private SignInManager<AppUser> signInManager;
@@ -22,18 +23,18 @@ namespace LinkHolder.Controllers {
             signInManager = signinMgr;
         }
         
+        [HttpPost("register")]
         [AllowAnonymous]
-        [Route("Register")]
-        public async Task<String> Register(CreateUserModel model) {
+        public async Task<String> Register([FromBody]CreateUserModel model) {
             if (!ModelState.IsValid) {
                 return "Register - ModelState is not valid";
             }
-            var user = new AppUser() { UserName = model.Email, Email = model.Email };
+            var user = new AppUser() { UserName = model.Name, Email = model.Email };
  
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            IdentityResult result = await userManager.CreateAsync(user, model.Password);
  
             if (!result.Succeeded) {
-                return GetErrorResult(result);
+                return result.ToString();
             }
  
             return "Register - OK";
