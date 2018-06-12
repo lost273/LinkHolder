@@ -27,7 +27,8 @@ Make `IdentityDbContext` and `DbSet` for store of the links
 to the file `appsettings.json`
 
 ## Register the context
-Create `AddDbContext` in the file `Startup.cs`
+Add `AddDbContext` in the file `Startup.cs`
+Add `Identity` in the file `Startup.cs`
 
 ## Creating the database
 
@@ -39,3 +40,4 @@ Create `AddDbContext` in the file `Startup.cs`
 Create the file `AuthProperties.cs` in the folder `Models`
 Create the file `AccountController.cs` in the folder `Controller`
 Write `Token` controller for JWT Authentication
+Add JWT-functional in in the file `Startup.cs` (Authentication, Authorization)

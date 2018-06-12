@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
 namespace LinkHolder.Controllers {
+    [Authorize]
     public class AccountController : Controller {
         private UserManager<AppUser> userManager;
         private SignInManager<AppUser> signInManager;
@@ -37,12 +38,12 @@ namespace LinkHolder.Controllers {
             var now = DateTime.UtcNow;
             
             var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
+                    issuer: AuthProperties.ISSUER,
+                    audience: AuthProperties.AUDIENCE,
                     notBefore: now,
                     claims: identity.Claims,
-                    expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+                    expires: now.Add(TimeSpan.FromMinutes(AuthProperties.LIFETIME)),
+                    signingCredentials: new SigningCredentials(AuthProperties.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
              
             var response = new

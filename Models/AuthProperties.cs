@@ -2,7 +2,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
 namespace LinkHolder {
-    public class AuthOptions {
+    public class AuthProperties {
         public const string ISSUER = "LinkHolderAuthServer";
         public const string AUDIENCE = "http://localhost:5000/";
         const string KEY = "F3Ffdsvs_33&fff$fdFFv+44fdfV__vvfdseEFfxVsKug";
