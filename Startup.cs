@@ -78,6 +78,8 @@ namespace LinkHolder {
 
             //app.UseHttpsRedirection();
             app.UseMvc();
+
+            AppDbContext.CreateAdminAccount(app.ApplicationServices, Configuration).Wait();
         }
     }
 }
