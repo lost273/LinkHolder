@@ -11,7 +11,7 @@ Create a file `UserModels.cs` in the folder `Models`
 Create a file `Link.cs` in the folder `Models`
 
 ## Creating the database context
-Create a file `AppDbContext.cs.cs` in the folder `Models`
+Create a file `AppDbContext.cs` in the folder `Models`
 Make `IdentityDbContext` and `DbSet` for store of the links
 
 ## Creating the connection string
@@ -53,3 +53,8 @@ Create the file `AdminController.cs` in the folder `Controller`
 Create the file `RoleAdminController.cs` in the folder `Controller`
 Add `EditUserModel` in the `UserModels.cs`
 Add `RoleModificationModel` in the `UserModels.cs`
+
+## The data for first deploy
+
+Add `AdminUser` data to the `appsettings.json`
+Add the method `CreateAdminAccount` in the file `AppDbContext.cs`
