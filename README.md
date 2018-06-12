@@ -41,3 +41,8 @@ Create the file `AuthProperties.cs` in the folder `Models`
 Create the file `AccountController.cs` in the folder `Controller`
 Write `Token` controller for JWT Authentication
 Add JWT-functional in in the file `Startup.cs` (Authentication, Authorization)
+
+## User creation
+
+Add method `Register` in the `AccountController.cs`
+Add class `CreateUserModel` in the `UserModels.cs`
