@@ -1,5 +1,9 @@
 # LinkHolder
 
+## Creating the standart WEB API application
+
+    dotnet new webapi
+
 ## Creating the user model
 Create a file `UserModels.cs` in the folder `Models`
 
@@ -25,9 +29,11 @@ to the file `appsettings.json`
 ## Register the context
 Create `AddDbContext` in the file `Startup.cs`
 
-## Adding A Migration
+## Creating the database
 
     dotnet ef  migrations add CreateDatabase
     dotnet ef database update
 
+## Creating the Authentication
 
+Create the file `AuthProperties.cs` in the folder `Models`
