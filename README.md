@@ -63,6 +63,8 @@ Add the `UseDefaultServiceProvider` in the file `Program.cs`
 
 ## Database architecture
 
-/-----------
-|          |
-/-----------
+    ------------
+    |          |
+    ------------
+
+
