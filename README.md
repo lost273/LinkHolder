@@ -60,3 +60,9 @@ Add `AdminUser` data to the `appsettings.json`
 Add the method `CreateAdminAccount` in the file `AppDbContext.cs`
 Add the method `CreateAdminAccount` in the file `Startup.cs`
 Add the `UseDefaultServiceProvider` in the file `Program.cs`
+
+## Database architecture
+
+/-----------
+|          |
+/-----------
