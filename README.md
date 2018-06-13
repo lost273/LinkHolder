@@ -63,8 +63,12 @@ Add the `UseDefaultServiceProvider` in the file `Program.cs`
 
 ## Database architecture
 
-    ------------
-    |          |
-    ------------
+        Link   <--|     Folder <--|     User
+    ============  |  ==========   |  ===========
+    | Id       |  |  | Id     |   |  | Id      |
+    | Body     |  |  | Name   |   |- | Folders |
+    ============  |- | Links  |      ===========
+                     ==========
+
 
 
