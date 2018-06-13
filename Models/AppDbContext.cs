@@ -11,6 +11,7 @@ namespace LinkHolder.Models{
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){
         }
         public DbSet<Link> Links { get; set; }
+        public DbSet<Folder> Folders { get; set; }
         public static async Task CreateAdminAccount(IServiceProvider serviceProvider,
                                                     IConfiguration configuration){
             UserManager<AppUser> userManager = 

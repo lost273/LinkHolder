@@ -73,3 +73,8 @@ Add prop `MyFolders` in the `AppUser` class
 
 ## Database Migration
 
+Disable `CreateAdminAccount` in the `Startup.cs` file, can be enabled again
+after the migration.
+    
+    dotnet ef migrations add CustomProperties
+    dotnet ef database update
