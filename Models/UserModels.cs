@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
 namespace LinkHolder.Models {
     public class AppUser : IdentityUser {
+        public List<Folder> MyFolders { get; set; }
     }
     public class CreateUserModel{
         [Required]

@@ -63,12 +63,13 @@ Add the `UseDefaultServiceProvider` in the file `Program.cs`
 
 ## Database architecture
 
-        Link   <--|     Folder <--|     User
+        Link   <--|     Folder <--|    AppUser
     ============  |  ==========   |  ===========
     | Id       |  |  | Id     |   |  | Id      |
-    | Body     |  |  | Name   |   |- | Folders |
-    ============  |- | Links  |      ===========
-                     ==========
+    | Body     |  |  | Name   |   |  |  ...    |
+    ============  |- | Links  |   |- | Folders |
+                     ==========      ===========
+Add prop `MyFolders` in the `AppUser` class
 
-
+## Database Migration
 
