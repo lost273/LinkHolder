@@ -21,8 +21,9 @@ namespace LinkHolder.Controllers {
             signInManager = signinMgr;
         }
         [HttpGet]
-        public ActionResult<string> Get() {
-            return signInManager.Context.User.ToString();
+        public ActionResult<AppUser> Get() {
+            AppUser user = userManager.FindByEmailAsync(User.Identity.Name).Result;
+            return user;
         }
 
         // GET api/values/5
