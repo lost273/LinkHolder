@@ -12,29 +12,23 @@ namespace LinkHolder.Controllers {
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase {
-        AppUser db = new AppUser();
+        private AppUser user; 
         private UserManager<AppUser> userManager;
-        private SignInManager<AppUser> signInManager;
-        public ValuesController(UserManager<AppUser> userMgr,
-            SignInManager<AppUser> signinMgr) {
+        public ValuesController(UserManager<AppUser> userMgr
+            ) {
             userManager = userMgr;
-            signInManager = signinMgr;
+            user = userManager.FindByEmailAsync(User.Identity.Name).Result;
+
         }
         [HttpGet]
-        public ActionResult<AppUser> Get() {
-            AppUser user = userManager.FindByEmailAsync(User.Identity.Name).Result;
-            return user;
+        public ActionResult<List<Folder>> Get() {
+            return user.MyFolders;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id) {
-            return "value";
-        }
-
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value) {
+        public void Post([FromBody] SaveLinkModel saveLink) {
+            Link link = new Link {Body = saveLink.LinkBody};
+            Folder folder = user.MyFolders.Select(f => f).Where(f => f.Name.Equals(saveLink.FolderName));
         }
 
         // PUT api/values/5

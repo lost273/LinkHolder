@@ -10,4 +10,8 @@ namespace LinkHolder.Models{
         public string Name { get; set; }
         public List<Link> MyLinks { get; set; }
     }
+    public class SaveLinkModel {
+        public string LinkBody { get; set; }
+        public string FolderName { get; set; }
+    }
 }
