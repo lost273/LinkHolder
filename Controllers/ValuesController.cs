@@ -14,21 +14,30 @@ namespace LinkHolder.Controllers {
     public class ValuesController : ControllerBase {
         private AppUser user; 
         private UserManager<AppUser> userManager;
-        public ValuesController(UserManager<AppUser> userMgr
-            ) {
+        public ValuesController(UserManager<AppUser> userMgr) {
             userManager = userMgr;
-            user = userManager.FindByEmailAsync(User.Identity.Name).Result;
 
         }
         [HttpGet]
         public ActionResult<List<Folder>> Get() {
+            user = userManager.FindByEmailAsync(User.Identity.Name).Result;
             return user.MyFolders;
         }
 
         [HttpPost]
         public void Post([FromBody] SaveLinkModel saveLink) {
+            user = userManager.FindByEmailAsync(User.Identity.Name).Result;
             Link link = new Link {Body = saveLink.LinkBody};
-            Folder folder = user.MyFolders.Select(f => f).Where(f => f.Name.Equals(saveLink.FolderName));
+            Folder folder = new Folder();
+
+            if(user.MyFolders != null) {
+                folder = user.MyFolders.Select(f => f).Where(f => f.Name.Equals(saveLink.FolderName)).FirstOrDefault();
+            }
+            if(folder.Name == null) {
+                folder.Name = saveLink.FolderName;
+            }
+            folder.MyLinks.Add(link);
+            user.MyFolders.Add(folder);
         }
 
         // PUT api/values/5
