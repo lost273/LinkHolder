@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LinkHolder.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LinkHolder.Controllers {
@@ -10,10 +12,17 @@ namespace LinkHolder.Controllers {
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase {
-        // GET api/values
+        AppUser db = new AppUser();
+        private UserManager<AppUser> userManager;
+        private SignInManager<AppUser> signInManager;
+        public ValuesController(UserManager<AppUser> userMgr,
+            SignInManager<AppUser> signinMgr) {
+            userManager = userMgr;
+            signInManager = signinMgr;
+        }
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get() {
-            return new string[] { "value1", "value2" };
+        public ActionResult<string> Get() {
+            return signInManager.Context.User.ToString();
         }
 
         // GET api/values/5
