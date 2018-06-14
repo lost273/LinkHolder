@@ -14,9 +14,10 @@ namespace LinkHolder.Controllers {
     public class ValuesController : ControllerBase {
         private AppUser user; 
         private UserManager<AppUser> userManager;
-        public ValuesController(UserManager<AppUser> userMgr) {
+        private AppDbContext appDbContext;
+        public ValuesController(UserManager<AppUser> userMgr, AppDbContext appDbCont) {
             userManager = userMgr;
-
+            appDbContext = appDbCont;
         }
         [HttpGet]
         public ActionResult<List<Folder>> Get() {
@@ -26,6 +27,7 @@ namespace LinkHolder.Controllers {
 
         [HttpPost]
         public void Post([FromBody] SaveLinkModel saveLink) {
+            
             user = userManager.FindByEmailAsync(User.Identity.Name).Result;
             Link link = new Link {Body = saveLink.LinkBody};
             Folder folder = new Folder();
@@ -36,6 +38,7 @@ namespace LinkHolder.Controllers {
             if(folder.Name == null) {
                 folder.Name = saveLink.FolderName;
             }
+            appDbContext.Folders.Add(folder);
             folder.MyLinks.Add(link);
             user.MyFolders.Add(folder);
         }
