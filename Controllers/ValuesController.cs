@@ -61,9 +61,11 @@ namespace LinkHolder.Controllers {
         public void Put(int id, [FromBody] string value) {
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
+        [HttpDelete("link/{id}")]
         public void Delete(int id) {
+            Link link = appDbContext.Links.Select(l => l).Where(l => l.Id == id).FirstOrDefault();
+            appDbContext.Links.Remove(link);
+            appDbContext.SaveChanges();
         }
     }
 }
