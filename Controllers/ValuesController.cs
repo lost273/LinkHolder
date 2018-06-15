@@ -37,21 +37,14 @@ namespace LinkHolder.Controllers {
             }
             if(folder.Name == null) {
                 folder.Name = saveLink.FolderName;
+                folder.AppUserId = user.Id;
+                appDbContext.Folders.Add(folder);
             }
-        
-            folder.MyLinks.Add(link);
             
+            link.FolderId = folder.Id;
             appDbContext.Links.Add(link);
-            appDbContext.Folders.Add(folder);
-            
 
-            folder.MyLinks.Add(link);
-            user.MyFolders.Add(folder);
-            appDbContext.Users.Update(user);
-
-            appDbContext.Folders.Add(folder);
-            
-            user.MyFolders.Add(folder);
+            appDbContext.SaveChanges();
         }
 
         // PUT api/values/5
