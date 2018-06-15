@@ -21,22 +21,29 @@ namespace LinkHolder.Controllers {
             appDbContext = appDbCont;
         }
         [HttpGet]
-        public ActionResult<List<Folder>> Get() {
+        public List<Folder> Get() {
             user = userManager.FindByEmailAsync(User.Identity.Name).Result;
-            return user.MyFolders;
+            return appDbContext.Folders.Include(f => f.MyLinks)
+                                       .Select(f => f).Where(f => f.AppUserId == user.Id)
+                                       .ToList();
         }
 
         [HttpPost]
         public void Post([FromBody] SaveLinkModel saveLink) {
             //eager loading
-            user = appDbContext.Users.Include(u => u.MyFolders).Select(u => u).Where(u => u.Email.Equals(User.Identity.Name)).FirstOrDefault();
+            user = appDbContext.Users.Include(u => u.MyFolders)
+                                    .Select(u => u).Where(u => u.Email.Equals(User.Identity.Name))
+                                    .FirstOrDefault();
             
             Link link = new Link {Body = saveLink.LinkBody, Description = saveLink.LinkDescription};
             Folder folder = new Folder();
 
+            //if user don't have the folders
             if(user.MyFolders != null) {
-                folder = user.MyFolders.Select(f => f).Where(f => f.Name.Equals(saveLink.FolderName)).FirstOrDefault();
+                folder = user.MyFolders.Select(f => f).Where(f => f.Name.Equals(saveLink.FolderName))
+                                        .FirstOrDefault();
             }
+            //if user don't have the named folder
             if(folder.Name == null) {
                 folder.Name = saveLink.FolderName;
                 folder.AppUserId = user.Id;
