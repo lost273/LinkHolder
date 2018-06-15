@@ -69,6 +69,8 @@ Add the `UseDefaultServiceProvider` in the file `Program.cs`
     | Body     |  |  | Name   |   |  |  ...    |
     ============  |- | Links  |   |- | Folders |
                      ==========      ===========
+    (FolderId)        (AppUserId)      - columns created by EF (Code First)
+
 Add prop `MyFolders` in the `AppUser` class
 
 ## Database Migration
