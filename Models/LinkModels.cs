@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace LinkHolder.Models{
     public class Link {
         public int Id { get; set; }
+        public string Description { get; set; }
         public string Body { get; set; }
         public int FolderId { get; set; }
         public Folder Folder { get; set; }
@@ -16,6 +17,7 @@ namespace LinkHolder.Models{
     }
     public class SaveLinkModel {
         public string LinkBody { get; set; }
+        public string LinkDescription { get; set; }
         public string FolderName { get; set; }
     }
 }

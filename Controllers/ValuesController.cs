@@ -29,7 +29,7 @@ namespace LinkHolder.Controllers {
         public void Post([FromBody] SaveLinkModel saveLink) {
             
             user = userManager.FindByEmailAsync(User.Identity.Name).Result;
-            Link link = new Link {Body = saveLink.LinkBody};
+            Link link = new Link {Body = saveLink.LinkBody, Description = saveLink.LinkDescription};
             Folder folder = new Folder();
 
             if(user.MyFolders != null) {
@@ -38,8 +38,19 @@ namespace LinkHolder.Controllers {
             if(folder.Name == null) {
                 folder.Name = saveLink.FolderName;
             }
-            appDbContext.Folders.Add(folder);
+        
             folder.MyLinks.Add(link);
+            
+            appDbContext.Links.Add(link);
+            appDbContext.Folders.Add(folder);
+            
+
+            folder.MyLinks.Add(link);
+            user.MyFolders.Add(folder);
+            appDbContext.Users.Update(user);
+
+            appDbContext.Folders.Add(folder);
+            
             user.MyFolders.Add(folder);
         }
 
