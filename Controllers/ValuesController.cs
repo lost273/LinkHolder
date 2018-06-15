@@ -6,6 +6,7 @@ using LinkHolder.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LinkHolder.Controllers {
     [Authorize(Roles = "User,Administrator")]
@@ -27,9 +28,9 @@ namespace LinkHolder.Controllers {
 
         [HttpPost]
         public void Post([FromBody] SaveLinkModel saveLink) {
+            //eager loading
+            user = appDbContext.Users.Include(u => u.MyFolders).Select(u => u).Where(u => u.Email.Equals(User.Identity.Name)).FirstOrDefault();
             
-            user = userManager.FindByEmailAsync(User.Identity.Name).Result;
-            user.MyFolders =  appDbContext.Folders.Select(f => f).Where(f => f.AppUserId.Equals(user.Id)).ToList();
             Link link = new Link {Body = saveLink.LinkBody, Description = saveLink.LinkDescription};
             Folder folder = new Folder();
 
