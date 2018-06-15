@@ -29,6 +29,7 @@ namespace LinkHolder.Controllers {
         public void Post([FromBody] SaveLinkModel saveLink) {
             
             user = userManager.FindByEmailAsync(User.Identity.Name).Result;
+            user.MyFolders =  appDbContext.Folders.Select(f => f).Where(f => f.AppUserId.Equals(user.Id)).ToList();
             Link link = new Link {Body = saveLink.LinkBody, Description = saveLink.LinkDescription};
             Folder folder = new Folder();
 
