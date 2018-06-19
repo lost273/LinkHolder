@@ -77,22 +77,27 @@ namespace LinkHolder.Controllers {
  
         private ClaimsIdentity GetIdentity(string username, string password) {
             var user = userManager.FindByEmailAsync(username).Result;
-            var roles = userManager.GetRolesAsync(user).Result;
-            if (roles != null)
-            {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, username)
-                };
-                foreach(string r in roles){
-                    claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, r));
+            if(user != null) {
+                if(!userManager.CheckPasswordAsync(user,password).Result){
+                    return null;
                 }
-                ClaimsIdentity claimsIdentity =
-                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
-                return claimsIdentity;
+                var roles = userManager.GetRolesAsync(user).Result;
+            
+                if (roles != null)
+                {
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimsIdentity.DefaultNameClaimType, username)
+                    };
+                    foreach(string r in roles){
+                        claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, r));
+                    }
+                    ClaimsIdentity claimsIdentity =
+                    new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
+                        ClaimsIdentity.DefaultRoleClaimType);
+                    return claimsIdentity;
+                }
             }
- 
             return null;
         }
     }

@@ -26,3 +26,17 @@ D:\current\github\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.AssemblyInfo.cs
 D:\current\github\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.RazorTargetAssemblyInfo.cache
 D:\current\github\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.dll
 D:\current\github\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.pdb
+D:\githublost273\LinkHolder\bin\Debug\netcoreapp2.1\LinkHolder.deps.json
+D:\githublost273\LinkHolder\bin\Debug\netcoreapp2.1\LinkHolder.runtimeconfig.json
+D:\githublost273\LinkHolder\bin\Debug\netcoreapp2.1\LinkHolder.runtimeconfig.dev.json
+D:\githublost273\LinkHolder\bin\Debug\netcoreapp2.1\LinkHolder.dll
+D:\githublost273\LinkHolder\bin\Debug\netcoreapp2.1\LinkHolder.pdb
+D:\githublost273\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.csprojAssemblyReference.cache
+D:\githublost273\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.csproj.CoreCompileInputs.cache
+D:\githublost273\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.RazorAssemblyInfo.cache
+D:\githublost273\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.RazorAssemblyInfo.cs
+D:\githublost273\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.AssemblyInfoInputs.cache
+D:\githublost273\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.AssemblyInfo.cs
+D:\githublost273\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.RazorTargetAssemblyInfo.cache
+D:\githublost273\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.dll
+D:\githublost273\LinkHolder\obj\Debug\netcoreapp2.1\LinkHolder.pdb
