@@ -21,7 +21,7 @@ namespace LinkHolder.Controllers {
             appDbContext = appDbCont;
         }
         [HttpGet]
-        public List<Folder> Get() {
+        public IEnumerable<Folder> Get() {
             user = userManager.FindByEmailAsync(User.Identity.Name).Result;
             return appDbContext.Folders.Include(f => f.MyLinks)
                                        .Select(f => f).Where(f => f.AppUserId == user.Id)
