@@ -20,4 +20,12 @@ namespace LinkHolder.Models{
         public string LinkDescription { get; set; }
         public string FolderName { get; set; }
     }
+    public sealed class ViewFolder {
+        public string Name { get; set; }
+        public List<ViewLink> MyLinks { get; set; }
+    }
+    public sealed class ViewLink {
+        public string Description { get; set; }
+        public string Body { get; set; }
+    }
 }

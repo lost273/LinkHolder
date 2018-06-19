@@ -21,11 +21,16 @@ namespace LinkHolder.Controllers {
             appDbContext = appDbCont;
         }
         [HttpGet]
-        public IEnumerable<Folder> Get() {
+        public IEnumerable<ViewFolder> Get() {
             user = userManager.FindByEmailAsync(User.Identity.Name).Result;
-            return appDbContext.Folders.Include(f => f.MyLinks)
-                                       .Select(f => f).Where(f => f.AppUserId == user.Id)
-                                       .ToList();
+            return appDbContext.Folders.Where(f => f.AppUserId == user.Id)
+                                        .Select(f => new ViewFolder 
+                                                    {Name = f.Name, 
+                                                     MyLinks = f.MyLinks
+                                                     .Select(l => new ViewLink
+                                                        {Description=l.Description,
+                                                         Body=l.Body}).ToList()})
+                                        .ToList();
         }
 
         [HttpPost]
