@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LinkHolder.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -36,7 +37,7 @@ namespace LinkHolder.Controllers {
         }
 
         [HttpPost]
-        public void Post([FromBody] SaveLinkModel saveLink) {
+        public async Task Post([FromBody] SaveLinkModel saveLink) {
             //eager loading
             user = appDbContext.Users.Include(u => u.MyFolders)
                                     .Select(u => u).Where(u => u.Email.Equals(User.Identity.Name))
@@ -61,6 +62,7 @@ namespace LinkHolder.Controllers {
             appDbContext.Links.Add(link);
 
             appDbContext.SaveChanges();
+            await Response.WriteAsync("Link successfully saved");
         }
 
         // PUT api/values/5
@@ -69,10 +71,31 @@ namespace LinkHolder.Controllers {
         }
 
         [HttpDelete("link/{id}")]
-        public void Delete(int id) {
+        public async Task DeleteLink(int id) {
             Link link = appDbContext.Links.Select(l => l).Where(l => l.Id == id).FirstOrDefault();
+            if (link == null) {
+                await Response.WriteAsync("Link not found!");
+                return;
+            }
             appDbContext.Links.Remove(link);
             appDbContext.SaveChanges();
+            await Response.WriteAsync("Link successfully deleted");
+        }
+        [HttpDelete("folder/{id}")]
+        public async Task DeleteFolder(int id) {
+            Folder folder = appDbContext.Folders.Select(f => f)
+                                                .Where(f => f.Id == id)
+                                                .FirstOrDefault();
+            if (folder == null) {
+                await Response.WriteAsync("Folder not found!");
+                return;
+            }
+            List<Link> links = appDbContext.Links.Select(l => l)
+                                                  .Where(l => l.FolderId == folder.Id)
+                                                  .ToList();
+            appDbContext.Folders.Remove(folder);
+            appDbContext.SaveChanges();
+            await Response.WriteAsync("Folder successfully deleted");
         }
     }
 }
