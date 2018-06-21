@@ -25,10 +25,12 @@ namespace LinkHolder.Controllers {
             user = userManager.FindByEmailAsync(User.Identity.Name).Result;
             return appDbContext.Folders.Where(f => f.AppUserId == user.Id)
                                         .Select(f => new ViewFolder 
-                                                    {Name = f.Name, 
+                                                    {Id = f.Id,
+                                                     Name = f.Name, 
                                                      MyLinks = f.MyLinks
                                                      .Select(l => new ViewLink
-                                                        {Description=l.Description,
+                                                        {Id = l.Id,
+                                                         Description=l.Description,
                                                          Body=l.Body}).ToList()})
                                         .ToList();
         }
@@ -46,7 +48,7 @@ namespace LinkHolder.Controllers {
             //if user don't have the folders
             if(user.MyFolders != null) {
                 folder = user.MyFolders.Select(f => f).Where(f => f.Name.Equals(saveLink.FolderName))
-                                        .FirstOrDefault();
+                                        .FirstOrDefault() ?? new Folder();
             }
             //if user don't have the named folder
             if(folder.Name == null) {
