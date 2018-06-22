@@ -21,6 +21,7 @@ namespace LinkHolder.Controllers {
             userManager = userMgr;
             appDbContext = appDbCont;
         }
+        //the method shows all folders
         [HttpGet]
         public IEnumerable<ViewFolder> Get() {
             user = userManager.FindByEmailAsync(User.Identity.Name).Result;
@@ -35,7 +36,7 @@ namespace LinkHolder.Controllers {
                                                          Body=l.Body}).ToList()})
                                         .ToList();
         }
-
+        //the method keeps a link 
         [HttpPost]
         public async Task Post([FromBody] SaveLinkModel saveLink) {
             //eager loading
@@ -64,12 +65,11 @@ namespace LinkHolder.Controllers {
             appDbContext.SaveChanges();
             await Response.WriteAsync("Link successfully saved");
         }
-
-        // PUT api/values/5
+        //method changes a link
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value) {
         }
-
+        //method deletes a link
         [HttpDelete("link/{id}")]
         public async Task DeleteLink(int id) {
             Link link = appDbContext.Links.Select(l => l).Where(l => l.Id == id).FirstOrDefault();
@@ -81,6 +81,7 @@ namespace LinkHolder.Controllers {
             appDbContext.SaveChanges();
             await Response.WriteAsync("Link successfully deleted");
         }
+        //method deletes a folder
         [HttpDelete("folder/{id}")]
         public async Task DeleteFolder(int id) {
             Folder folder = appDbContext.Folders.Select(f => f)
