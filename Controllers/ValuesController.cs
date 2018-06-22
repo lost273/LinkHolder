@@ -66,8 +66,33 @@ namespace LinkHolder.Controllers {
             await Response.WriteAsync("Link successfully saved");
         }
         //method changes a link
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value) {
+        [HttpPut("link/{id}")]
+        public async Task PutLink(int id, [FromBody] SaveLinkModel link) {
+            Link dbLink = appDbContext.Links.Select(l => l)
+                                            .Where(l => l.Id == id).FirstOrDefault();
+            if(dbLink == null) {
+                await Response.WriteAsync("Link not found!");
+                return;
+            }
+            dbLink.Body = link.LinkBody;
+            dbLink.Description = link.LinkDescription;
+            appDbContext.Entry(dbLink).State = EntityState.Modified;
+            appDbContext.SaveChanges();
+            await Response.WriteAsync("Link successfully changed");
+        }
+        //method changes a name of the folder
+        [HttpPut("folder/{id}")]
+        public async Task PutFolder(int id, [FromBody] String name) {
+            Folder folder = appDbContext.Folders.Select(f => f)
+                                                .Where(f => f.Id == id).FirstOrDefault();
+            if(folder == null) {
+                await Response.WriteAsync("Folder not found!");
+                return;
+            }
+            folder.Name = name;
+            appDbContext.Entry(folder).State = EntityState.Modified;
+            appDbContext.SaveChanges();
+            await Response.WriteAsync("Folder successfully changed");
         }
         //method deletes a link
         [HttpDelete("link/{id}")]
