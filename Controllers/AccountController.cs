@@ -26,17 +26,16 @@ namespace LinkHolder.Controllers {
         [HttpPost("register")]
         [AllowAnonymous]
         public async Task Register([FromBody]CreateUserModel model) {
-            if (!ModelState.IsValid) {
-                await Response.WriteAsync("ModelState is not valid");
-            }
-            var user = new AppUser() { UserName = model.Name, Email = model.Email };
- 
-            IdentityResult result = await userManager.CreateAsync(user, model.Password);
- 
-            if (!result.Succeeded) {
-                await Response.WriteAsync($"{result.ToString()}");
+            if (ModelState.IsValid) {
+                var user = new AppUser() { UserName = model.Name, Email = model.Email };
+                IdentityResult result = await userManager.CreateAsync(user, model.Password);
+                if (!result.Succeeded) {
+                    await Response.WriteAsync($"{result.ToString()}");
+                } else {
+                    await Response.WriteAsync("OK");
+                }
             } else {
-                await Response.WriteAsync("OK");
+                await Response.WriteAsync("ModelState is not valid");
             }
         }
         

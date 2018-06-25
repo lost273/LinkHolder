@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LinkHolder.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,20 +46,21 @@ namespace LinkHolder.Controllers{
             }
         }
         [HttpPost]
-        public async Task<string> Create([FromBody]CreateUserModel model){
-            if(ModelState.IsValid){
+        public async Task Create([FromBody]CreateUserModel model){
+            if(ModelState.IsValid) {
                 AppUser user = new AppUser{
                     UserName = model.Name,
                     Email = model.Email
                 };
                 IdentityResult result = await userManager.CreateAsync(user, model.Password);
                 if(result.Succeeded){
-                    return "OK";
+                    await Response.WriteAsync("OK");
                 } else {
-                    return "false";
+                    await Response.WriteAsync($"{result.Errors.ToString()}");
                 }
+            } else {
+                await Response.WriteAsync("ModelState is not valid!");
             }
-            return "false";
         }
         [HttpDelete("{id}")]
         public async Task<string> Delete(string id){
@@ -68,7 +70,7 @@ namespace LinkHolder.Controllers{
                 if(result.Succeeded){
                     return "OK";
                 } else {
-                    return result.ToString();
+                    return result.Errors.ToString();
                 }
             } else {
                 return "User Not Found";
