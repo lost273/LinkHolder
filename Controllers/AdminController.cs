@@ -54,26 +54,26 @@ namespace LinkHolder.Controllers{
                 };
                 IdentityResult result = await userManager.CreateAsync(user, model.Password);
                 if(result.Succeeded){
-                    await Response.WriteAsync("OK");
+                    await Response.WriteAsync("User successfully created");
                 } else {
-                    await Response.WriteAsync($"{result.Errors.ToString()}");
+                    await Response.WriteAsync($"{result}");
                 }
             } else {
                 await Response.WriteAsync("ModelState is not valid!");
             }
         }
         [HttpDelete("{id}")]
-        public async Task<string> Delete(string id){
+        public async Task Delete(string id){
             AppUser user = await userManager.FindByIdAsync(id);
             if(user != null){
                 IdentityResult result = await userManager.DeleteAsync(user);
                 if(result.Succeeded){
-                    return "OK";
+                    await Response.WriteAsync("User successfully deleted");
                 } else {
-                    return result.Errors.ToString();
+                    await Response.WriteAsync($"{result}");
                 }
             } else {
-                return "User Not Found";
+                await Response.WriteAsync($"User Not Found");
             }
         }
         [HttpPut("{id}")]
