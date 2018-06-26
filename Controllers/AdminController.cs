@@ -77,14 +77,15 @@ namespace LinkHolder.Controllers{
             }
         }
         [HttpPut("{id}")]
-        public async Task<string> Edit(string id,[FromBody]EditUserModel model){
+        public async Task Edit(string id,[FromBody]EditUserModel model){
             AppUser user = await userManager.FindByIdAsync(id);
             if(user != null){
                 user.Email = model.Email;
                 user.UserName = model.Name;
                 IdentityResult validEmail = await userValidator.ValidateAsync(userManager,user);
                 if(!validEmail.Succeeded){
-                    return validEmail.ToString();
+                    await Response.WriteAsync($"{validEmail}");
+                    return;
                 }
                 IdentityResult validPass = null;
                 if(!string.IsNullOrEmpty(model.Password)){
@@ -92,21 +93,21 @@ namespace LinkHolder.Controllers{
                     if(validPass.Succeeded){
                         user.PasswordHash = passwordHasher.HashPassword(user, model.Password);
                     } else {
-                        return validPass.ToString();
+                        await Response.WriteAsync($"{validPass}");
+                        return;
                     }
                 }
                 if((validEmail.Succeeded && validPass == null)||(validEmail.Succeeded && model.Password != string.Empty && validPass.Succeeded)){
                     IdentityResult result = await userManager.UpdateAsync(user);
                     if(result.Succeeded){
-                        return "OK";
+                        await Response.WriteAsync("User successfully changed");
                     } else {
-                        return result.ToString();
+                         await Response.WriteAsync($"{result}");
                     }
                 }
             } else {
-                return "User Not Found";
+                await Response.WriteAsync("User Not Found");
             }
-            return "!";
         }
     }
 }
