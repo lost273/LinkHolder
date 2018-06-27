@@ -73,7 +73,7 @@ namespace LinkHolder.Controllers{
                     await Response.WriteAsync($"{result}");
                 }
             } else {
-                await Response.WriteAsync($"User Not Found");
+                await Response.WriteAsync("User Not Found");
             }
         }
         [HttpPut("{id}")]

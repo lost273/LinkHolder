@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using LinkHolder.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,16 +43,16 @@ namespace LinkHolder.Controllers {
             return RMMList;
         }
         [HttpPost]
-        public async Task<string> Create([FromBody]string name) {
+        public async Task Create([FromBody]string name) {
             if(ModelState.IsValid){
                 IdentityResult result = await roleManager.CreateAsync(new IdentityRole(name));
                 if(result.Succeeded){
-                    return "OK";
+                    await Response.WriteAsync("Role successfully created");
                 } else {
-                    return result.ToString();
+                    await Response.WriteAsync($"{result}");
                 }
             } else {
-                return "fail";
+                await Response.WriteAsync("ModelState is not valid!");
             }
         }
         [HttpPut]
@@ -84,17 +85,17 @@ namespace LinkHolder.Controllers {
             }
         }
         [HttpDelete("{id}")]
-        public async Task<string> Delete(string id){
+        public async Task Delete(string id){
             IdentityRole role = await roleManager.FindByIdAsync(id);
             if(role != null){
                 IdentityResult result = await roleManager.DeleteAsync(role);
                 if(result.Succeeded){
-                    return "OK";
+                    await Response.WriteAsync("Role successfully deleted");
                 } else {
-                    return result.ToString();
+                    await Response.WriteAsync($"{result}");
                 }
             } else {
-                return "No role found";
+                await Response.WriteAsync("Role Not Found");
             }
         }
     }
