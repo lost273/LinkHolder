@@ -30,9 +30,9 @@ namespace LinkHolder.Controllers {
                 var user = new AppUser() { UserName = model.Name, Email = model.Email };
                 IdentityResult result = await userManager.CreateAsync(user, model.Password);
                 if (!result.Succeeded) {
-                    await Response.WriteAsync($"{result.ToString()}");
+                    await Response.WriteAsync($"{result}");
                 } else {
-                    await Response.WriteAsync("OK");
+                    await Response.WriteAsync("User successfully registered");
                 }
             } else {
                 await Response.WriteAsync("ModelState is not valid");

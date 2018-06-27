@@ -56,15 +56,21 @@ namespace LinkHolder.Controllers {
             }
         }
         [HttpPut]
-        public async Task<string> Edit([FromBody]RoleModificationModel model){
+        public async Task Edit([FromBody]RoleModificationModel model){
             IdentityResult result;
-            if(ModelState.IsValid){
+            if(ModelState.IsValid) {
+                IdentityRole role = await roleManager.FindByNameAsync(model.RoleName);
+                if (role == null) {
+                    await Response.WriteAsync("Role not found!");
+                    return;
+                }
                 foreach(string userId in model.IdsToAdd ?? new string[]{}){
                     AppUser user = await userManager.FindByIdAsync(userId);
                     if(user != null){
                         result = await userManager.AddToRoleAsync(user, model.RoleName);
                         if(!result.Succeeded){
-                            return result.ToString();
+                            await Response.WriteAsync($"{result}");
+                            return;
                         }
                     }
                 }
@@ -73,15 +79,14 @@ namespace LinkHolder.Controllers {
                     if(user != null){
                         result = await userManager.RemoveFromRoleAsync(user, model.RoleName);
                         if(!result.Succeeded){
-                            return result.ToString();
+                            await Response.WriteAsync($"{result}");
+                            return;
                         }
                     }
                 }
-            }
-            if(ModelState.IsValid){
-                return "OK";
+                await Response.WriteAsync("Role successfully edited");
             } else {
-                return "false";
+                await Response.WriteAsync("ModelState is not valid!");
             }
         }
         [HttpDelete("{id}")]
