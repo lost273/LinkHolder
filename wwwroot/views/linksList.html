@@ -1,7 +1,7 @@
 <div class="panel panel-default row" ng-controller="folderListCtrl">
     <div class="col-xs-3">
             <a ng-repeat="folder in folders | orderBy:'name'"   
-                ng-click="selectFolder(folder.name)" class="btn btn-outline-warning btn-block"
+                ng-click="selectFolder(folder)" class="btn btn-outline-warning btn-block"
                 ng-class="getFolderClass(folder.name)">
                 {{folder.name}}
             </a>
@@ -16,10 +16,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="link in folder.myLinks">
+                    <tr ng-repeat="link in selectedFolder.myLinks">
                         <td>{{link.body}}</td>
                         <td>{{link.description}}</td>
                     </tr>
+                    </div>
                     </tbody>
                 </table>
         </div>
@@ -28,7 +29,7 @@
 
 
 
-
+<!--
         
         <div class="col-xs-8">
             <div class="well" ng-repeat=
@@ -51,3 +52,4 @@
             </div> 
         </div>
     </div>
+    -->
