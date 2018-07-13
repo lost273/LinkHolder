@@ -11,16 +11,16 @@
                 <table class="table table-striped" >
                     <thead>
                     <tr>
-                        <th>Link</th>
-                        <th>Description</th>
+                        <th>Link and Description</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="link in selectedFolder.myLinks">
-                        <td>{{link.body}}</td>
-                        <td>{{link.description}}</td>
+                        <td><a ng-href="{{link.body}}">{{link.body}}</a>
+                            <br/>
+                            <i>({{link.description}})</i>
+                        </td>
                     </tr>
-                    </div>
                     </tbody>
                 </table>
         </div>

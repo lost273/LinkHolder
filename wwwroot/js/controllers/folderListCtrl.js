@@ -1,8 +1,8 @@
 angular.module("linkHolder")
-    .constant("folderListActiveClass", "btn-primary")
+    .constant("folderListActiveClass", "active")
     .constant("Url","/api/values")
-    .constant("linkListPageCount", 5)
-    .controller("folderListCtrl", function ($scope, $http, Url, $location) {
+    .controller("folderListCtrl", 
+        function ($scope, $http, Url, $location, folderListActiveClass) {
         
         $http.get(Url)
         .then(function (response) {
@@ -15,5 +15,9 @@ angular.module("linkHolder")
 
         $scope.selectFolder = function(newFolder){
             $scope.selectedFolder = newFolder;
+        }
+        $scope.getFolderClass = function(name){
+            if($scope.selectedFolder == null) return "";
+            return $scope.selectedFolder.name == name ? folderListActiveClass : "";
         }
     });
