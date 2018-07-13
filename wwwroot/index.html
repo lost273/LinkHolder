@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app='linkHolder'>
+<head>
+    <meta charset="utf-8">
+    <title>Link Holder</title>
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-route.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/lhstyles.css" rel="stylesheet" />
+    <script>
+        angular.module("linkHolder",["ngRoute"])
+            .config(function ($routeProvider) {
+                $routeProvider.when("/login", {
+                    templateUrl: "/views/login.html"
+                });
+
+                $routeProvider.when("/main", {
+                    templateUrl: "/views/list.html"
+                });
+
+                $routeProvider.otherwise({
+                    redirectTo: "/login"
+                });
+        });
+    </script>
+    <script src="js/controllers/authCtrl.js"></script>
+    <script src="js/controllers/folderListCtrl.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-dark bg-dark navbar-expand-md">
+        <a class="navbar-brand" href="#">Link Holder</a>
+    </div>
+    
+    <ng-view/>
+
+</body>
+</html>

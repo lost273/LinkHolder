@@ -1,0 +1,9 @@
+<div>dedede</div>
+<div class="panel panel-default row" ng-controller="folderListCtrl">
+        <div class="col-xs-3">
+             <a ng-repeat="folder in data.folders" class=" btn btn-block btn-default btn-lg"
+                ng-class="getFolderClass(folder.name)">
+                 {{folder.name}}
+             </a>
+        </div>
+</div>
