@@ -1,35 +1,49 @@
-
-<div class="alert alert-danger" ng-show="data.error">
-Error({{data.error.status}}).
-<a href="index.html" class="alert-link">Retry</a>
-</div>
-
-
-<div class="panel panel-default row" ng-controller="folderListCtrl"
-        ng-hide="data.error">
-        <div class="col-xs-3">
-            <a ng-click="selectFolder()" 
-                class="btn btn-block btn-default btn-lg">Home</a>
-             <a ng-repeat="folder in data.folders | orderBy:'name'"   
-                ng-click="selectFolder(folder.name)" class=" btn btn-block btn-default btn-lg"
+<div class="panel panel-default row" ng-controller="folderListCtrl">
+    <div class="col-xs-3">
+            <a ng-repeat="folder in folders | orderBy:'name'"   
+                ng-click="selectFolder(folder.name)" class="btn btn-outline-warning btn-block"
                 ng-class="getFolderClass(folder.name)">
-                 {{folder.name}}
-             </a>
+                {{folder.name}}
+            </a>
+    </div>
+    <div class="col-xs-8">
+        <div class="container">          
+                <table class="table table-striped" >
+                    <thead>
+                    <tr>
+                        <th>Link</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="link in folder.myLinks">
+                        <td>{{link.body}}</td>
+                        <td>{{link.description}}</td>
+                    </tr>
+                    </tbody>
+                </table>
         </div>
+    </div>
+
+
+
+
+
+        
         <div class="col-xs-8">
             <div class="well" ng-repeat=
-            "folder in data.folders | filter:folderFilterFn | range:selectedPage:pageSize">
+            "folder in folders | filter:folderFilterFn | range:selectedPage:pageSize">
                 <i>{{folder.name}}</i>
-                <div class="well" ng-repeat="link in folder.myLinks">
+                <div class="well" >
                     <h3>
-                        <strong>{{link.body}}</strong>
+                        <strong></strong>
                     </h3>
-                    <span class="lead">{{link.description}}</span>
+                    <span class="lead"></span>
                 </div>
             </div>
             <div class="pull-right btn-group">
                 <a ng-repeat=
-                    "page in data.folders | filter:categoryFilterFn | pageCount:pageSize"
+                    "page in folders | filter:categoryFilterFn | pageCount:pageSize"
                     ng-click="selectPage($index + 1)" class="btn btn-default"
                     ng-class="getPageClass($index + 1)">
                     {{$index + 1}}
