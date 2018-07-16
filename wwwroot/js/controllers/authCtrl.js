@@ -1,12 +1,9 @@
 angular.module("linkHolder")
-.config(function($httpProvider) {
-    //Enable cross domain calls
-    $httpProvider.defaults.useXDomain = true;
-})
 .constant("tokenUrl","/api/account/token")
 .controller("authCtrl", function ($scope, $location, $http, tokenUrl) {
     $scope.username = "admin@example.com";
     $scope.password = "Secret123$";
+    $scope.loginStatus = false;
 
     $scope.authenticate = function (user, pass) {
         
@@ -26,10 +23,16 @@ angular.module("linkHolder")
             
             $location.path("/main");
             $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.access_token;
+            $scope.loginStatus = true;
             console.log("LOGIN OK " + response.data.access_token);
         },function (error) {
             $scope.authenticationError = error;
             console.log(response.data.access_token);
         });
+    }
+    $scope.logout = function (){
+        $scope.loginStatus = false;
+        $http.defaults.headers.common.Authorization = "";
+        $location.path("/login");
     }
 });

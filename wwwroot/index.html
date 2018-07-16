@@ -26,9 +26,15 @@
     <script src="js/controllers/authCtrl.js"></script>
     <script src="js/controllers/folderListCtrl.js"></script>
 </head>
-<body>
+<body ng-controller="authCtrl">
     <div class="navbar navbar-dark bg-dark navbar-expand-md">
         <a class="navbar-brand" href="#">Link Holder</a>
+        <div class="navbar-right" ng-show="loginStatus">
+            <div class="navbar-text">
+                <b>{{username}}</b>
+            </div>
+            <button type="button" class="btn btn-light" ng-click="logout()">Exit</button>
+        </div>
     </div>
     <br/>
     <div class="container">
