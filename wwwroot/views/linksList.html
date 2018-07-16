@@ -11,7 +11,10 @@
                 <table class="table table-striped" >
                     <thead>
                     <tr>
-                        <th>Link and Description</th>
+                        <th>Link and Description
+                        <button ng-click="changeLink()" class="btn btn-outline-success pull-right">Change</button>
+                        <button ng-click="deleteLink()" class="btn btn-outline-danger pull-right">Delete</button>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -19,6 +22,9 @@
                         <td><a ng-href="{{link.body}}">{{link.body}}</a>
                             <br/>
                             <i>({{link.description}})</i>
+                            <br/>
+                            <button ng-click="changeLink()" class="btn btn-outline-success pull-right">Change</button>
+                            <button ng-click="deleteLink()" class="btn btn-outline-danger pull-right">Delete</button>
                         </td>
                     </tr>
                     </tbody>
