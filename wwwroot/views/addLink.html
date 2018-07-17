@@ -1,0 +1,33 @@
+<div class="card bg-light card-body mb-3" ng-controller="folderListCtrl">
+    
+        <div class="alert alert-info" ng-hide="Error">
+            Current folder {{$scope.selectedFolder}}.
+            Enter link, description, name of the folder and click Add to create it
+        </div>
+    
+        <div class="alert alert-danger" ng-show="Error">
+            Failed ({{Error.status}}). Try again.
+        </div>
+    
+        <form name="addForm" novalidate>
+            <div class="form-group">
+                    <label>Name of the folder</label>
+                    <input name="folder" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Link</label>
+                <input name="link" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input name="description" class="form-control" required />
+            </div>
+            <div class="text-center">
+                <button ng-click="authenticate(folder, link, description)"
+                        ng-disabled="addForm.$invalid"
+                        class="btn btn-success">
+                    Add
+                </button>
+            </div>
+        </form>
+    </div>

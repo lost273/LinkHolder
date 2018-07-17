@@ -20,7 +20,7 @@ angular.module("linkHolder")
             if($scope.selectedFolder == null) return "";
             return $scope.selectedFolder.name == name ? folderListActiveClass : "";
         }
-        $scope.deleteLink = function(){
-            
+        $scope.changeView = function(loc){
+            $location.path(loc);
         }
     });

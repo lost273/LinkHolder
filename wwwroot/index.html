@@ -17,6 +17,10 @@
                 $routeProvider.when("/main", {
                     templateUrl: "/views/linksList.html"
                 });
+                
+                $routeProvider.when("/addLink", {
+                    templateUrl: "/views/addLink.html"
+                });
 
                 $routeProvider.otherwise({
                     redirectTo: "/login"

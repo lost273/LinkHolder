@@ -10,9 +10,18 @@
         <div class="container">          
                 <table class="table table-striped" >
                     <thead>
-                        <button ng-click="changeFolder()" class="btn btn-outline-success pull-right">Change Folder</button>
-                        <button ng-click="addFolder()" class="btn btn-outline-success pull-right">Add Folder</button>
-                        <button ng-click="deleteFolder()" class="btn btn-outline-danger pull-right">Delete Folder</button>
+                        <button ng-click="changeView('changeFolder')" 
+                            class="btn btn-outline-success pull-right">
+                            Change Folder
+                        </button>
+                        <button ng-click="changeView('addFolder')" 
+                            class="btn btn-outline-success pull-right">
+                            Add Folder
+                        </button>
+                        <button ng-click="deleteFolder()" 
+                            class="btn btn-outline-danger pull-right">
+                            Delete Folder
+                        </button>
                     <tr>
                         <th>Link and Description</th>
                     </tr>
@@ -23,12 +32,22 @@
                             <br/>
                             <i>({{link.description}})</i>
                             <br/>
-                            <button ng-click="changeLink()" class="btn btn-outline-success pull-right">Change</button>
-                            <button ng-click="deleteLink()" class="btn btn-outline-danger pull-right">Delete</button>
+                            <button ng-click="changeView('changeLink')" 
+                                class="btn btn-outline-success pull-right">
+                                Change</button>
+                            <button ng-click="deleteLink()" 
+                                class="btn btn-outline-danger pull-right">
+                                Delete
+                            </button>
                         </td>
                     </tr>
                     <tr>
-                        <td><button ng-click="addLink()" class="btn btn-outline-success pull-right">Add Link</button></td>
+                        <td>
+                            <button ng-click="changeView('addLink')" 
+                                class="btn btn-outline-success pull-right">
+                                Add Link
+                            </button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
