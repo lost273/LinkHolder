@@ -2,7 +2,7 @@ angular.module("linkHolder")
     .constant("folderListActiveClass", "active")
     .constant("Url","/api/values")
     .controller("folderListCtrl", 
-        function ($scope, $http, Url, $location, folderListActiveClass) {
+        function ($scope, $http, Url, $location, folderListActiveClass, infoMessage) {
         
         $http.get(Url)
         .then(function (response) {
@@ -15,6 +15,7 @@ angular.module("linkHolder")
 
         $scope.selectFolder = function(newFolder){
             $scope.selectedFolder = newFolder;
+            infoMessage.setMessage(null);
         }
         $scope.getFolderClass = function(name){
             if($scope.selectedFolder == null) return "";

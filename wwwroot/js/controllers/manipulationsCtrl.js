@@ -1,6 +1,6 @@
 angular.module("linkHolder")
     .controller("manipulationsCtrl", 
-        function ($scope, $http, Url, $location) {
+        function ($scope, $http, Url, $location, infoMessage) {
         
         $http.get(Url)
         .then(function (response) {
@@ -20,7 +20,8 @@ angular.module("linkHolder")
                 
             }).then(function (response) {
                 $location.path("/main");
-                console.log(response);
+                infoMessage.setMessage(response.data);
+                console.log(response.data);
             },function (error) {
                 $scope.Error = error;
                 console.log(error);

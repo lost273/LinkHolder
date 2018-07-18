@@ -25,7 +25,18 @@
                 $routeProvider.otherwise({
                     redirectTo: "/login"
                 });
-        });
+            })
+            .service("infoMessage", function(){
+                var message = null;
+                return {
+                    setMessage : function (m){
+                        message = m;
+                    },
+                    getMessage : function(){
+                        return message;
+                    }
+                }
+            });
     </script>
     <script src="js/controllers/authCtrl.js"></script>
     <script src="js/controllers/folderListCtrl.js"></script>
@@ -42,6 +53,9 @@
         </div>
     </div>
     <br/>
+    <div class="alert alert-success" ng-show="information()">
+            {{information()}}
+    </div>
     <div class="container">
         <ng-view/>
     </div>

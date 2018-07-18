@@ -1,9 +1,13 @@
 angular.module("linkHolder")
 .constant("tokenUrl","/api/account/token")
-.controller("authCtrl", function ($scope, $location, $http, tokenUrl) {
+.controller("authCtrl", function ($scope, $location, $http, tokenUrl, infoMessage) {
     $scope.username = "admin@example.com";
     $scope.password = "Secret123$";
     $scope.loginStatus = false;
+
+    $scope.information = function(){
+        return infoMessage.getMessage();
+    }
 
     $scope.authenticate = function (user, pass) {
         
