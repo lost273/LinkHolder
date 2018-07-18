@@ -10,16 +10,17 @@ angular.module("linkHolder")
         });
 
         $scope.addLink = function(folder, link, description){
-            $http.post(Url, {FolderName : folder, LinkBody : link, LinkDescription : description}, {
-                withCredentials: true
-                })
-            /*$http({
+            
+            var saveLink = { LinkBody : link, LinkDescription : description, FolderName : folder};
+            $http({
                 method: 'POST',
                 url: Url,
                 headers: {'Content-Type': 'application/json'},
-                data: {"FolderName" : folder, "LinkBody" : link, "LinkDescription" : description}
-            })*/.then(function (response) {
+                data : JSON.stringify(saveLink)
+                
+            }).then(function (response) {
                 $location.path("/main");
+                console.log(response);
             },function (error) {
                 $scope.Error = error;
                 console.log(error);

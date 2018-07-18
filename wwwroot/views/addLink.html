@@ -11,12 +11,12 @@
         <form name="addForm" novalidate>
             <div class="form-group">
                 <label>Enter new name of the folder</label>
-                <input name="folder" class="form-control" />
+                <input name="folder" class="form-control" ng-model="folder"/>
             </div>
             <div class="form-group"> 
                 <label>Or choose an existing one</label>
-                <select class="form-control" id="" name="selectedFolder">
-                        <option ng-repeat="folder in folders | orderBy:'name'">
+                <select class="form-control" id="" name="selectedFolder" ng-model="selectedFolder">
+                        <option ng-repeat="folder in folders | orderBy:'name'" value="{{folder.name}}">
                             {{folder.name}}
                         </option>
                         
@@ -24,11 +24,11 @@
             </div>
             <div class="form-group">
                 <label>Link</label>
-                <input name="link" class="form-control" required />
+                <input name="link" class="form-control" ng-model="link" required />
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <input name="description" class="form-control" required />
+                <input name="description" class="form-control" ng-model="description" required />
             </div>
             <div class="text-center">
                 <button ng-click="addLink(folder || selectedFolder, link, description)"
