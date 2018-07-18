@@ -24,4 +24,7 @@ angular.module("linkHolder")
         $scope.changeView = function(loc){
             $location.path(loc);
         }
+        $scope.deleteLink = function(id){
+            console.log(id);
+        }
     });
