@@ -1,3 +1,4 @@
+
 <div class="panel panel-default row" ng-controller="folderListCtrl">
     <div class="col-xs-3">
             <a ng-repeat="folder in folders | orderBy:'name'"   
@@ -7,7 +8,7 @@
             </a>
     </div>
     <div class="col-xs-8">
-        <div class="container">          
+        
                 <table class="table table-striped" >
                     <thead>
                         <button ng-click="changeView('changeFolder')" 
@@ -53,9 +54,9 @@
                     </tr>
                     </tbody>
                 </table>
-        </div>
+        
     </div>
-
+</div>
 
 
 
