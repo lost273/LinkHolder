@@ -36,18 +36,30 @@
                         return message;
                     }
                 }
+            })
+            .service("userName", function(){
+                var name = null;
+                return {
+                    setUserName : function (n){
+                        name = n;
+                    },
+                    getUserName : function(){
+                        return name;
+                    }
+                }
             });
     </script>
     <script src="js/controllers/authCtrl.js"></script>
     <script src="js/controllers/folderListCtrl.js"></script>
     <script src="js/controllers/manipulationsCtrl.js"></script>
+    <script src="js/controllers/mainPageCtrl.js"></script>
 </head>
-<body ng-controller="authCtrl">
+<body ng-controller="mainPageCtrl">
     <div class="navbar navbar-dark bg-dark navbar-expand-md">
         <a class="navbar-brand" href="#">Link Holder</a>
-        <div class="navbar-right" ng-show="loginStatus">
+        <div class="navbar-right">
             <div class="navbar-text">
-                <b>{{username}}</b>
+                <b>{{username()}}</b>
             </div>
             <button type="button" class="btn btn-light" ng-click="logout()">Exit</button>
         </div>

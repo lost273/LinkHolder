@@ -1,16 +1,10 @@
 angular.module("linkHolder")
 .constant("tokenUrl","/api/account/token")
-.controller("authCtrl", function ($scope, $location, $http, tokenUrl, infoMessage) {
+.controller("authCtrl", function ($scope, $location, $http, tokenUrl, userName) {
     $scope.username = "admin@example.com";
     $scope.password = "Secret123$";
-    $scope.loginStatus = false;
-
-    $scope.information = function(){
-        return infoMessage.getMessage();
-    }
 
     $scope.authenticate = function (user, pass) {
-        
        
         $http({
             method: 'POST',
@@ -27,16 +21,11 @@ angular.module("linkHolder")
             
             $location.path("/main");
             $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.access_token;
-            $scope.loginStatus = true;
             console.log("LOGIN OK " + response.data.access_token);
+            userName.setUserName(user);
         },function (error) {
             $scope.authenticationError = error;
             console.log(response.data.access_token);
         });
-    }
-    $scope.logout = function (){
-        $scope.loginStatus = false;
-        $http.defaults.headers.common.Authorization = "";
-        $location.path("/login");
     }
 });
