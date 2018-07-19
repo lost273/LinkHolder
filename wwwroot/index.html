@@ -22,12 +22,28 @@
                     templateUrl: "/views/addLink.html"
                 });
 
+                $routeProvider.when("/changeLink", {
+                    templateUrl: "/views/changeLink.html"
+                });
+
                 $routeProvider.otherwise({
                     redirectTo: "/login"
                 });
             })
             .service("infoMessage", function(){
                 var message = null;
+                return {
+                    setMessage : function (m){
+                        message = m;
+                    },
+                    getMessage : function(){
+                        return message;
+                    }
+                }
+            })
+            .service("changes", function(){
+                var body = null;
+                var description = null;
                 return {
                     setMessage : function (m){
                         message = m;

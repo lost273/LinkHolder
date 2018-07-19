@@ -13,6 +13,15 @@ angular.module("linkHolder")
 
         $scope.selectedFolder = null;
 
+        $scope.getFolders = function(){
+            $http.get(Url)
+            .then(function (response) {
+                $scope.folders = response.data;
+            },function (error) {
+                $location.path("/login");
+            });
+        }
+
         $scope.selectFolder = function(newFolder){
             $scope.selectedFolder = newFolder;
             infoMessage.setMessage(null);
@@ -27,10 +36,14 @@ angular.module("linkHolder")
         $scope.deleteLink = function(id){
             $http.delete(Url+"/link/"+id)
             .then(function (response) {
+                $scope.selectedFolder = null;
                 infoMessage.setMessage(response.data);
-                $location.path("/main");
+                $scope.getFolders();
             },function (error) {
                 infoMessage.setMessage(error);
             });
+        }
+        $scope.changeLink = function(id){
+            $location.path("/changeLink");
         }
     });

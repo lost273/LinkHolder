@@ -1,0 +1,41 @@
+<div class="card bg-light card-body mb-3" ng-controller="manipulationsCtrl">
+    
+    <div class="alert alert-info" ng-hide="Error">
+        Enter link, description, name of the folder and click Add to create it
+    </div>
+
+    <div class="alert alert-danger" ng-show="Error">
+        Failed ({{Error.status}}). Try again.
+    </div>
+
+    <form name="addForm" novalidate>
+        <div class="form-group">
+            <label>Enter new name of the folder</label>
+            <input name="folder" class="form-control" ng-model="folder"/>
+        </div>
+        <div class="form-group"> 
+            <label>Or choose an existing one</label>
+            <select class="form-control" id="" name="selectedFolder" ng-model="selectedFolder">
+                    <option ng-repeat="folder in folders | orderBy:'name'" value="{{folder.name}}">
+                        {{folder.name}}
+                    </option>
+                    
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Link</label>
+            <input name="link" class="form-control" ng-model="link" required />
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input name="description" class="form-control" ng-model="description" required />
+        </div>
+        <div class="text-center">
+            <button ng-click="addLink(folder || selectedFolder, link, description)"
+                    ng-disabled="addForm.$invalid"
+                    class="btn btn-success">
+                Add
+            </button>
+        </div>
+    </form>
+</div>
