@@ -25,6 +25,12 @@ angular.module("linkHolder")
             $location.path(loc);
         }
         $scope.deleteLink = function(id){
-            console.log(id);
+            $http.delete(Url+"/link/"+id)
+            .then(function (response) {
+                infoMessage.setMessage(response.data);
+                $location.path("/main");
+            },function (error) {
+                infoMessage.setMessage(error);
+            });
         }
     });

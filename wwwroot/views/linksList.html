@@ -30,7 +30,7 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="link in selectedFolder.myLinks">
-                        <td><a ng-href="{{link.body}}">{{link.body}}</a>
+                        <td><a ng-href="{{link.body}}">{{link.body | limitTo: 45 }}</a>
                             <br/>
                             <i>({{link.description}})</i>
                             <br/>
