@@ -1,7 +1,7 @@
 <div class="card bg-light card-body mb-3" ng-controller="manipulationsCtrl">
     
     <div class="alert alert-info" ng-hide="Error">
-        Enter link, description, name of the folder and click Add to create it
+        Enter link, description and click Change to change it
     </div>
 
     <div class="alert alert-danger" ng-show="Error">
@@ -9,19 +9,6 @@
     </div>
 
     <form name="addForm" novalidate>
-        <div class="form-group">
-            <label>Enter new name of the folder</label>
-            <input name="folder" class="form-control" ng-model="folder"/>
-        </div>
-        <div class="form-group"> 
-            <label>Or choose an existing one</label>
-            <select class="form-control" id="" name="selectedFolder" ng-model="selectedFolder">
-                    <option ng-repeat="folder in folders | orderBy:'name'" value="{{folder.name}}">
-                        {{folder.name}}
-                    </option>
-                    
-            </select>
-        </div>
         <div class="form-group">
             <label>Link</label>
             <input name="link" class="form-control" ng-model="link" required />
@@ -34,7 +21,7 @@
             <button ng-click="changeLink(link, description)"
                     ng-disabled="addForm.$invalid"
                     class="btn btn-success">
-                Add
+                Change
             </button>
         </div>
     </form>

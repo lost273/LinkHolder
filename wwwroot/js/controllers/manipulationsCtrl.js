@@ -43,6 +43,24 @@ angular.module("linkHolder")
             }).then(function (response) {
                 $location.path("/main");
                 infoMessage.setMessage(response.data);
+                changes.setObject({id : "", body : "", description : ""});
+                console.log(response.data);
+            },function (error) {
+                $scope.Error = error;
+                console.log(error);
+            });
+        }
+        $scope.changeFolder = function(name){
+            $http({
+                method: 'PUT',
+                url: Url + '/folder/' + changes.getObject().id,
+                headers: {'Content-Type': 'application/json'},
+                data : JSON.stringify(name)
+                
+            }).then(function (response) {
+                $location.path("/main");
+                infoMessage.setMessage(response.data);
+                changes.setObject({id : "", body : "", description : ""});
                 console.log(response.data);
             },function (error) {
                 $scope.Error = error;

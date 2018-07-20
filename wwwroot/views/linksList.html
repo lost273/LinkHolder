@@ -9,19 +9,19 @@
     </div>
     <div class="col-xs-8">
         
-                <table class="table table-striped" >
+                <table class="table table-striped" ng-if="selectedFolder">
                     <thead>
-                        <button ng-click="changeView('changeFolder')" 
+                        <button ng-click="changeFolder(selectedFolder.id, selectedFolder.name)" ng-if="selectedFolder"
                             class="btn btn-outline-success pull-right">
                             Change Folder
                         </button>
                         &nbsp;
-                        <button ng-click="changeView('addFolder')" 
-                            class="btn btn-outline-success pull-right">
-                            Add Folder
+                        <button ng-click="changeView('addLink')" ng-if="selectedFolder"
+                                class="btn btn-outline-success pull-right">
+                                Add Link
                         </button>
                         &nbsp;
-                        <button ng-click="deleteFolder()" 
+                        <button ng-click="deleteFolder(selectedFolder.id)" ng-if="selectedFolder"
                             class="btn btn-outline-danger pull-right">
                             Delete Folder
                         </button>
@@ -41,14 +41,6 @@
                             <button ng-click="deleteLink(link.id)" 
                                 class="btn btn-outline-danger pull-right">
                                 Delete
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button ng-click="changeView('addLink')" 
-                                class="btn btn-outline-success pull-right">
-                                Add Link
                             </button>
                         </td>
                     </tr>

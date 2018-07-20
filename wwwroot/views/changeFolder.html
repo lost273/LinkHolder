@@ -1,0 +1,24 @@
+<div class="card bg-light card-body mb-3" ng-controller="manipulationsCtrl">
+    
+        <div class="alert alert-info" ng-hide="Error">
+            Enter link, description and click Change to change it
+        </div>
+    
+        <div class="alert alert-danger" ng-show="Error">
+            Failed ({{Error.status}}). Try again.
+        </div>
+    
+        <form name="addForm" novalidate>
+            <div class="form-group">
+                <label>New folder name:</label>
+                <input name="name" class="form-control" ng-model="link" required />
+            </div>
+            <div class="text-center">
+                <button ng-click="changeFolder(link)"
+                        ng-disabled="addForm.$invalid"
+                        class="btn btn-success">
+                    Change
+                </button>
+            </div>
+        </form>
+    </div>

@@ -26,6 +26,10 @@
                     templateUrl: "/views/changeLink.html"
                 });
 
+                $routeProvider.when("/changeFolder", {
+                    templateUrl: "/views/changeFolder.html"
+                });
+
                 $routeProvider.otherwise({
                     redirectTo: "/login"
                 });
@@ -87,6 +91,5 @@
         <ng-view/>
     </div>
     
-
 </body>
 </html>

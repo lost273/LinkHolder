@@ -43,9 +43,24 @@ angular.module("linkHolder")
                 infoMessage.setMessage(error);
             });
         }
+        $scope.deleteFolder = function(id){
+            $http.delete(Url+"/folder/"+id)
+            .then(function (response) {
+                $scope.selectedFolder = null;
+                infoMessage.setMessage(response.data);
+                $scope.getFolders();
+            },function (error) {
+                infoMessage.setMessage(error);
+            });
+        }
         $scope.changeLink = function(_id, _body, _description){
             var link = {id : _id,body : _body,description : _description};
             changes.setObject(link);
             $location.path("/changeLink");
+        }
+        $scope.changeFolder = function(_id, _body){
+            var link = {id : _id,body : _body,description : ""};
+            changes.setObject(link);
+            $location.path("/changeFolder");
         }
     });
