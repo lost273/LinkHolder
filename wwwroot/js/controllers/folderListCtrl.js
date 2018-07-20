@@ -2,7 +2,7 @@ angular.module("linkHolder")
     .constant("folderListActiveClass", "active")
     .constant("Url","/api/values")
     .controller("folderListCtrl", 
-        function ($scope, $http, Url, $location, folderListActiveClass, infoMessage) {
+        function ($scope, $http, Url, $location, folderListActiveClass, infoMessage, changes) {
         
         $http.get(Url)
         .then(function (response) {
@@ -43,7 +43,9 @@ angular.module("linkHolder")
                 infoMessage.setMessage(error);
             });
         }
-        $scope.changeLink = function(id){
+        $scope.changeLink = function(_id, _body, _description){
+            var link = {id : _id,body : _body,description : _description};
+            changes.setObject(link);
             $location.path("/changeLink");
         }
     });

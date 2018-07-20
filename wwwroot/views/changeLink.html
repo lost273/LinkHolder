@@ -31,7 +31,7 @@
             <input name="description" class="form-control" ng-model="description" required />
         </div>
         <div class="text-center">
-            <button ng-click="addLink(folder || selectedFolder, link, description)"
+            <button ng-click="changeLink(link, description)"
                     ng-disabled="addForm.$invalid"
                     class="btn btn-success">
                 Add

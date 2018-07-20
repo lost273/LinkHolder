@@ -9,5 +9,6 @@ angular.module("linkHolder")
     $scope.logout = function (){
         $http.defaults.headers.common.Authorization = "";
         $location.path("/login");
+        userName.setUserName("");
     }
 });
