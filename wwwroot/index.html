@@ -30,6 +30,10 @@
                     templateUrl: "/views/changeFolder.html"
                 });
 
+                $routeProvider.when("/panel", {
+                    templateUrl: "/views/userPanel.html"
+                });
+
                 $routeProvider.otherwise({
                     redirectTo: "/login"
                 });
@@ -80,7 +84,8 @@
             <div class="navbar-text">
                 <b>{{username()}}</b>
             </div>
-            <button type="button" class="btn btn-light" ng-click="logout()">Exit</button>
+            <button ng-if="username()" type="button" class="btn btn-light" ng-click="openPanel()">UserPanel</button>
+            <button ng-if="username()" type="button" class="btn btn-light" ng-click="logout()">Exit</button>
         </div>
     </div>
     <br/>

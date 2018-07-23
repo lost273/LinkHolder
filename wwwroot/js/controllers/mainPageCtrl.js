@@ -11,4 +11,7 @@ angular.module("linkHolder")
         $location.path("/login");
         userName.setUserName("");
     }
+    $scope.openPanel = function (){
+        $location.path("/panel");
+    }
 });

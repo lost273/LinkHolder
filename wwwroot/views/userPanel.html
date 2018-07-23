@@ -1,0 +1,43 @@
+
+<div class="panel panel-default row" ng-controller="panelCtrl">
+    
+    <div class="col-xs-8">
+        <table class="table table-striped" ng-if="selectedFolder">
+            <thead>
+                <button ng-click="changeFolder(selectedFolder.id, selectedFolder.name)" ng-if="selectedFolder"
+                    class="btn btn-outline-success pull-right">
+                    Change Folder
+                </button>
+                &nbsp;
+                <button ng-click="changeView('addLink')" ng-if="selectedFolder"
+                        class="btn btn-outline-success pull-right">
+                        Add Link
+                </button>
+                &nbsp;
+                <button ng-click="deleteFolder(selectedFolder.id)" ng-if="selectedFolder"
+                    class="btn btn-outline-danger pull-right">
+                    Delete Folder
+                </button>
+            <tr>
+                <th>Link and Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="link in selectedFolder.myLinks">
+                <td><a ng-href="{{link.body}}">{{link.body | limitTo: 45 }}</a>
+                    <br/>
+                    <i>({{link.description}})</i>
+                    <br/>
+                    <button ng-click="changeLink(link.id, link.body, link.description)" 
+                        class="btn btn-outline-success pull-right">
+                        Change</button>
+                    <button ng-click="deleteLink(link.id)" 
+                        class="btn btn-outline-danger pull-right">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
