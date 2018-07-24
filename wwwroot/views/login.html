@@ -24,6 +24,11 @@
                     class="btn btn-primary">
                 Log In
             </button>
+            <button ng-click="authenticate(username, password)"
+                    ng-disabled="authForm.$invalid"
+                    class="btn btn-primary">
+                Register
+            </button>
         </div>
     </form>
 </div>
