@@ -1,6 +1,7 @@
 angular.module("linkHolder")
 .constant("tokenUrl","/api/account/token")
-.controller("authCtrl", function ($scope, $location, $http, tokenUrl, userName) {
+.constant("regUrl","/api/account/register")
+.controller("authCtrl", function ($scope, $location, $http, tokenUrl, regUrl, userName) {
     $scope.username = "admin@example.com";
     $scope.password = "Secret123$";
 
@@ -23,6 +24,25 @@ angular.module("linkHolder")
             $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.access_token;
             console.log("LOGIN OK " + response.data.access_token);
             userName.setUserName(user);
+        },function (error) {
+            $scope.authenticationError = error;
+            console.log(response.data.access_token);
+        });
+    }
+    $scope.register = function(){
+        $location.path("/register");
+    }
+    $scope.userRegister = function(_name, _email, _password) {
+        var newUser = { Name : _name, Email : _email, Password : _password};
+        $http({
+            method: 'POST',
+            url: regUrl,
+            headers: {'Content-Type': 'application/json'},
+            data : JSON.stringify(newUser)
+        }).then(function (response) {
+            console.log("register ERRROR");
+            console.log(response);
+            $location.path("/login");
         },function (error) {
             $scope.authenticationError = error;
             console.log(response.data.access_token);
