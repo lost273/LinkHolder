@@ -16,4 +16,7 @@ angular.module("linkHolder")
         },function (error) {
             $location.path("/login");
         });
+    $scope.getUserName(id) {
+        
+    }
 });
