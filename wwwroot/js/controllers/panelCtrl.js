@@ -10,7 +10,7 @@ angular.module("linkHolder")
             $scope.roles = response.data;
             for(var i = 0; i < $scope.roles.length; i++) {
                 var roleName = $scope.roles[i].roleName;
-                var listOfUsers = $scope.listOfUsers;
+                var listOfUsers = Object.assign({}, $scope.listOfUsers);
                 $scope.usersInRoles[roleName] = listOfUsers;
                 for(var j = 0; j < $scope.roles[i].idsToAdd.length; j++) {
                     var userName = $scope.getUserName($scope.roles[i].idsToAdd[j]);
@@ -20,6 +20,7 @@ angular.module("linkHolder")
 
             
             console.log($scope.usersInRoles);
+            console.log(Object.keys($scope.usersInRoles));
             
         },function (error) {
             $location.path("/login");
