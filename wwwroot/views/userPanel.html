@@ -67,18 +67,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="role in usersInRoles">
-                <td>{{role.key}}
+            <tr ng-repeat="(name, users) in usersInRoles">
+                <td>{{name}}
                     <br>
                     <button ng-click="changeRole(role.id)"
                         class="btn btn-success">
-                        Change Role
+                        Save changes
                     </button>
                 </td>
                 <td>
-                    <div class="form-check" ng-repeat="(user,enabled) in role">
+                    <div class="form-check" ng-repeat="(user,enabled) in users">
                         <label class="form-check-label" >
-                            <input type="checkbox" class="form-check-input" ng-model="role[user]"> {{user}}
+                            <input type="checkbox" class="form-check-input" ng-model="users[user]"> {{user}}
                         </label>
                     </div>
                 </td>

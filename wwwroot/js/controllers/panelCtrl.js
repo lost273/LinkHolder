@@ -20,7 +20,7 @@ angular.module("linkHolder")
 
             
             console.log($scope.usersInRoles);
-            console.log(Object.keys($scope.usersInRoles));
+            
             
         },function (error) {
             $location.path("/login");
@@ -37,8 +37,12 @@ angular.module("linkHolder")
             $location.path("/login");
         });
     
+    $scope.getRoleName = function(role){
+        return Object.keys(role);
+        //console.log(Object.keys($scope.usersInRoles));
+    }
 
-   
+        
     var getRoles = function() {
         var Users = {};
         var Roles = {Users};
