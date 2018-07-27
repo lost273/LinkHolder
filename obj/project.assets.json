@@ -11506,23 +11506,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\273\\.nuget\\packages\\": {},
+    "C:\\Users\\d.shakhalevich\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\current\\github\\LinkHolder\\LinkHolder.csproj",
+      "projectUniqueName": "D:\\githublost273\\LinkHolder\\LinkHolder.csproj",
       "projectName": "LinkHolder",
-      "projectPath": "d:\\current\\github\\LinkHolder\\LinkHolder.csproj",
-      "packagesPath": "C:\\Users\\273\\.nuget\\packages\\",
-      "outputPath": "d:\\current\\github\\LinkHolder\\obj\\",
+      "projectPath": "D:\\githublost273\\LinkHolder\\LinkHolder.csproj",
+      "packagesPath": "C:\\Users\\d.shakhalevich\\.nuget\\packages\\",
+      "outputPath": "D:\\githublost273\\LinkHolder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\273\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\d.shakhalevich\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

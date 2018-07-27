@@ -2,6 +2,8 @@ angular.module("linkHolder")
 .constant("UrlRoleAdmin","/api/roleadmin")
 .constant("UrlAdmin","/api/admin")
 .controller("panelCtrl", function ($scope, $location, $http, UrlAdmin, UrlRoleAdmin) {
+    $scope.roles = {};
+    $scope.users = {};
     $scope.usersInRoles = {};
     $scope.listOfUsers = {};
     
@@ -17,11 +19,6 @@ angular.module("linkHolder")
                     $scope.usersInRoles[roleName][userName] = true;
                 }
             }
-
-            
-            console.log($scope.usersInRoles);
-            
-            
         },function (error) {
             $location.path("/login");
         });
@@ -37,32 +34,6 @@ angular.module("linkHolder")
             $location.path("/login");
         });
     
-    $scope.getRoleName = function(role){
-        return Object.keys(role);
-        //console.log(Object.keys($scope.usersInRoles));
-    }
-
-        
-    var getRoles = function() {
-        var Users = {};
-        var Roles = {Users};
-        var usersAndRoles = {Roles};
-        for(var i = 0; i < $scope.roles.length; i++) {
-            var roleName = $scope.roles[i].name;
-
-            for(var j = 0; j < $scope.roles[i].idsToAdd.length; j++){
-                var userName = $scope.getUserName($scope.roles[i].idsToAdd[j]);
-                usersAndRoles.Roles[roleName].Users[userName] = true;
-            }
-            for(var j = 0; j < $scope.roles[i].idsToDelete.length; j++){
-                var userName = $scope.getUserName($scope.roles[i].idsToDelete[j]);
-                usersAndRoles.Roles[roleName].Users[userName] = false;
-            }
-        }
-        console.log(usersAndRoles);
-        return usersAndRoles;
-    }
-
     $scope.getUserName = function(id) {
         for(var i = 0; i < $scope.users.length; i++){
             if ($scope.users[i].id === id) {
@@ -70,24 +41,53 @@ angular.module("linkHolder")
             }
         }
     }
-    $scope.changeRole = function(id) {
-        console.log($scope.usersInRoles);
+
+    $scope.getUserId = function(name) {
+        for(var i = 0; i < $scope.users.length; i++){
+            if ($scope.users[i].name === name) {
+                return $scope.users[i].id;
+            }
+        }
+    }
+
+    $scope.changeRole = function(roleName, users) {
+        var roleId;
+        var usersToAdd = [];
+        var usersToDelete = [];
+        console.log(users);
+
+        for(var key in users) {
+            if(users[key] == true){
+                var userId = $scope.getUserId(key);
+                usersToAdd.push(userId);
+            } else {
+                var userId = $scope.getUserId(key);
+                usersToDelete.push(userId);
+            }
+        }
+        
+        for(var i = 0; i < $scope.roles.length; i++) {
+            if($scope.roles[i].roleName == roleName) {
+                roleId = $scope.roles[i].roleId;
+                for(var j = 0; j < $scope.roles[i].idsToAdd.length; j++){
+                    var index = usersToAdd.indexOf($scope.roles[i].idsToAdd[j]);
+                    if(index != -1) {
+                        usersToAdd.splice(index,1);
+                    }
+                }
+                for(var j = 0; j < $scope.roles[i].idsToDelete.length; j++){
+                    var index = usersToDelete.indexOf($scope.roles[i].idsToDelete[j]);
+                    if(index != -1) {
+                        usersToDelete.splice(index,1);
+                    }
+                }
+                console.log({RoleName : roleName, 
+                    RoleId : roleId, 
+                    IdsToAdd : usersToAdd, 
+                    IdsToDelete : usersToDelete});
+                $location.path("/panel");
+                return;
+            }
+        }
     }
 });
-
-/*
-<div ng-controller="MainCtrl">
-  <label ng-repeat="(color,enabled) in colors">
-      <input type="checkbox" ng-model="colors[color]" /> {{color}} 
-  </label>
-  <p>colors: {{colors}}</p>
-</div>
-
-<script>
-  var app = angular.module('plunker', []);
-
-  app.controller('MainCtrl', function($scope){
-      $scope.colors = {Blue: true, Orange: true};
-  });
-</script>
-*/
